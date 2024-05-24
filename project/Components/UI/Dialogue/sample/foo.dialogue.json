@@ -1,0 +1,29 @@
+{
+	"dialogue_id" : "foo",
+	"dialogue_position" : "bottom",
+	"dialogue_snippets" : [
+		{
+		"speaker_name":"Ariadne",
+		"speaker_position":"left",
+		"speaker_image":"empty",
+		"text":"This is a long test
+		I hope it works
+		I hope it works
+		I hope it works
+		I hope it works
+		I hope it works
+		I hope it works
+		I hope it works
+		",
+		"color":"#c57938"
+		},
+				{
+		"speaker_name":"Booo",
+		"speaker_position":"right",
+		"speaker_image":"empty",
+		"text":"This is a short text",
+		"color":"#7938c5"
+		}
+	]
+}
+

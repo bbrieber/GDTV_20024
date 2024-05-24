@@ -1,0 +1,450 @@
+[gd_scene load_steps=10 format=3 uid="uid://b80ebvnbu6amd"]
+
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/UI_MenuGroupContainer.gd" id="2_55ngv"]
+[ext_resource type="PackedScene" uid="uid://tfohggghnb06" path="res://game/scenes/InGame.tscn" id="3_gigss"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_ChangeScene.gd" id="3_r7jvr"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_Quit.gd" id="5_6p3or"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_ChangeMenuContainer.gd" id="5_ui6yt"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/UI_AudioSlider.gd" id="7_yrij2"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_Remap.gd" id="8_ipbf7"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_InputExpander.gd" id="8_ixx3u"]
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/UI_AudioManager.gd" id="9_lcd5d"]
+
+[node name="MenuMock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main_Control" type="Control" parent="." node_paths=PackedStringArray("initial_focus")]
+layout_mode = 1
+anchor_left = 0.7
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.85
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_55ngv")
+initial_focus = NodePath("NinePatchRect/MainMenuButtons/Btn_StartGame")
+start_active = true
+
+[node name="ColorRect" type="ColorRect" parent="Main_Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Main_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuButtons" type="VBoxContainer" parent="Main_Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Btn_StartGame" type="Button" parent="Main_Control/NinePatchRect/MainMenuButtons"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Btn_Settings")
+theme_override_font_sizes/font_size = 48
+text = "Start"
+script = ExtResource("3_r7jvr")
+target_scene = ExtResource("3_gigss")
+
+[node name="Btn_Settings" type="Button" parent="Main_Control/NinePatchRect/MainMenuButtons" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Btn_StartGame")
+focus_neighbor_bottom = NodePath("../Btn_Quit")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("../../..")
+fade_to = NodePath("../../../../Settings_Control")
+
+[node name="Btn_Quit" type="Button" parent="Main_Control/NinePatchRect/MainMenuButtons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Btn_Settings")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+script = ExtResource("5_6p3or")
+
+[node name="Settings_Control" type="Control" parent="." node_paths=PackedStringArray("initial_focus")]
+visible = false
+layout_mode = 1
+anchor_top = 0.5
+anchor_right = 0.3
+anchor_bottom = 0.85
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_55ngv")
+initial_focus = NodePath("NinePatchRect/MainMenuButtons/Btn_SoundSettings")
+fade_out_offset = Vector2(-500, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Settings_Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Settings_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuButtons" type="VBoxContainer" parent="Settings_Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Btn_SoundSettings" type="Button" parent="Settings_Control/NinePatchRect/MainMenuButtons" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Btn_KeySettings")
+theme_override_font_sizes/font_size = 48
+text = "Sound"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("../../..")
+fade_to = NodePath("../../../../Sound_Control")
+
+[node name="Btn_KeySettings" type="Button" parent="Settings_Control/NinePatchRect/MainMenuButtons" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Btn_SoundSettings")
+focus_neighbor_bottom = NodePath("../Btn_GraphicSettings2")
+theme_override_font_sizes/font_size = 48
+text = "Input
+"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("../../..")
+fade_to = NodePath("../../../../KeyMapping_Control")
+
+[node name="Btn_GraphicSettings2" type="Button" parent="Settings_Control/NinePatchRect/MainMenuButtons" node_paths=PackedStringArray("init_scene", "fade_to")]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../Btn_KeySettings")
+focus_neighbor_bottom = NodePath("../Btn_Back")
+theme_override_font_sizes/font_size = 48
+text = "Graphic"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("../../..")
+fade_to = NodePath("../../../../Sound_Control")
+
+[node name="Btn_Back" type="Button" parent="Settings_Control/NinePatchRect/MainMenuButtons" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Btn_GraphicSettings2")
+theme_override_font_sizes/font_size = 48
+text = "Back"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("../../..")
+fade_to = NodePath("../../../../Main_Control")
+
+[node name="Sound_Control" type="Control" parent="." node_paths=PackedStringArray("initial_focus")]
+visible = false
+layout_mode = 1
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.85
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("VBoxContainer/MarginContainer/GridContainer/Slider_Music")
+script = ExtResource("2_55ngv")
+initial_focus = NodePath("VBoxContainer/MarginContainer/GridContainer/Slider_Main")
+fade_out_offset = Vector2(0, 0)
+fade_time = 0.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sound_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lbl_Sound" type="Label" parent="Sound_Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Sound
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Sound_Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="GridContainer" type="GridContainer" parent="Sound_Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 128
+columns = 2
+
+[node name="Lbl_Main" type="Label" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Main
+"
+
+[node name="Slider_Main" type="HSlider" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_yrij2")
+bus_name = "Main"
+
+[node name="Lbl_Music" type="Label" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Music
+"
+
+[node name="Slider_Music" type="HSlider" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Slider_Main")
+focus_neighbor_bottom = NodePath("../Slider_SFX")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_yrij2")
+bus_name = "Music"
+
+[node name="Lbl_SFX" type="Label" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "SFX
+"
+
+[node name="Slider_SFX" type="HSlider" parent="Sound_Control/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Slider_Music")
+focus_neighbor_bottom = NodePath("../../../../Btn_Back")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_yrij2")
+bus_name = "SFX"
+
+[node name="Btn_Back" type="Button" parent="Sound_Control" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../VBoxContainer/MarginContainer/GridContainer/Slider_SFX")
+theme_override_font_sizes/font_size = 42
+text = "Back"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("..")
+fade_to = NodePath("../../Settings_Control")
+
+[node name="KeyMapping_Control" type="Control" parent="." node_paths=PackedStringArray("initial_focus")]
+layout_mode = 1
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.85
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_55ngv")
+initial_focus = NodePath("ScrollContainer/VBoxContainer2/KeyboardGridContainer/Remap_Button")
+fade_out_offset = Vector2(0, 0)
+fade_time = 0.5
+
+[node name="Lbl_ InputMapping" type="Label" parent="KeyMapping_Control"]
+layout_mode = 2
+offset_right = 1856.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 64
+text = "Input Mapping
+"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KeyMapping_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 105.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="KeyMapping_Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Btn_Keyboard_Mappings" type="Button" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2" node_paths=PackedStringArray("grid_container")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Keyboard >"
+alignment = 0
+script = ExtResource("8_ixx3u")
+input_category = null
+grid_container = NodePath("../KeyboardGridContainer")
+
+[node name="KeyboardGridContainer" type="GridContainer" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 64
+columns = 3
+
+[node name="Control" type="Control" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/KeyboardGridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/KeyboardGridContainer"]
+layout_mode = 2
+text = "ActionName "
+
+[node name="Remap_Button" type="Button" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/KeyboardGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "ActionText"
+script = ExtResource("8_ipbf7")
+action_name = &"jump"
+
+[node name="Btn_Joypad_Mappings" type="Button" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2" node_paths=PackedStringArray("grid_container")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Joypad >"
+alignment = 0
+script = ExtResource("8_ixx3u")
+input_category = 1
+grid_container = NodePath("../JoypadGridContainer")
+
+[node name="JoypadGridContainer" type="GridContainer" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 64
+columns = 3
+
+[node name="Control" type="Control" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/JoypadGridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/JoypadGridContainer"]
+layout_mode = 2
+text = "ActionName "
+
+[node name="Remap_Button" type="Button" parent="KeyMapping_Control/ScrollContainer/VBoxContainer2/JoypadGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "ActionText"
+script = ExtResource("8_ipbf7")
+action_name = &"jump"
+
+[node name="Btn_Back" type="Button" parent="KeyMapping_Control" node_paths=PackedStringArray("init_scene", "fade_to")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "Back"
+script = ExtResource("5_ui6yt")
+init_scene = NodePath("..")
+fade_to = NodePath("../../Settings_Control")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="Label" type="Label" parent="SubViewportContainer"]
+visible = false
+layout_mode = 2
+text = "sdfsdsdfsdfsdf"
+
+[node name="UI_AudioManager" type="Node" parent="." node_paths=PackedStringArray("menu_root")]
+script = ExtResource("9_lcd5d")
+menu_root = NodePath("..")
+
+[node name="UI_AudioStreamPlayer" type="AudioStreamPlayer" parent="UI_AudioManager"]
+bus = &"SFX"
+
+[node name="Music_AudioStreamPlayer" type="AudioStreamPlayer" parent="UI_AudioManager"]
+autoplay = true
+bus = &"Music"
+
+[connection signal="value_changed" from="Sound_Control/VBoxContainer/MarginContainer/GridContainer/Slider_SFX" to="UI_AudioManager" method="_on_sfx_value_changed"]

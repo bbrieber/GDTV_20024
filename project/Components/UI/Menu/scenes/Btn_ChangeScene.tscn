@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4x3e6gmycv6c"]
+
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Btn_ChangeScene.gd" id="1_b34n4"]
+
+[node name="BtnChangeScene" type="Button"]
+script = ExtResource("1_b34n4")

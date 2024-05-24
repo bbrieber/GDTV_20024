@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://yo6pkl35f0mj"]
+
+[ext_resource type="Script" path="res://Components/interactables/scrtips/interactable_dialogue_node.gd" id="1_ntgda"]
+[ext_resource type="Script" path="res://Components/UI/viewport_link/scripts/vp_anchor.gd" id="2_o8q7m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1j5ve"]
+radius = 30.97
+
+[node name="InteractableDialogueNode" type="Area2D" node_paths=PackedStringArray("anchor")]
+position = Vector2(58, 58)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ntgda")
+dialogue_id = &"FOO"
+anchor = NodePath("Viewport_Anchor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1j5ve")
+debug_color = Color(0.601329, 0.498716, 0.0843618, 0.42)
+
+[node name="Viewport_Anchor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -20.0
+offset_bottom = -20.0
+script = ExtResource("2_o8q7m")

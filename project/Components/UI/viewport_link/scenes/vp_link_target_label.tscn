@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://3cv0fis5kdme"]
+
+[ext_resource type="Script" path="res://Components/UI/viewport_link/scripts/vp_link_target.gd" id="1_e2sfv"]
+[ext_resource type="Theme" uid="uid://pm6mf183p5k0" path="res://themes/dialogue_theme.tres" id="2_ljhwk"]
+
+[node name="VP_Link_Target_Label" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2sfv")
+
+[node name="LinkContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = -47.0
+offset_right = 18.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ljhwk")
+
+[node name="Label" type="Label" parent="LinkContainer"]
+layout_mode = 2
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1

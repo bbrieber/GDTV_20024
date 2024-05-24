@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Settings_KeyMapping" load_steps=2 format=3 uid="uid://cwgsbo5rdnesw"]
+
+[ext_resource type="Script" path="res://Components/UI/Menu/scripts/Settings_KeyMapping.gd" id="1_7frwk"]
+
+[resource]
+script = ExtResource("1_7frwk")
+key_mappings = Array[String](["", "", "", "", "", "", ""])

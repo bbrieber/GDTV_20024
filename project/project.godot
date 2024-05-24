@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="The Last Stand"
+run/main_scene="res://Components/UI/Menu/mock/MenuMock.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalViewportLink="*res://Components/UI/viewport_link/scripts/global_viewport_link.gd"
+GameSettingsManager="*res://Components/globals/game_settings_manager.gd"
+GlobalSignalDispatcher="*res://Components/globals/global_signal_dispatcher.gd"
+SceneTransition="*res://Components/UI/Menu/scenes/scene_transition.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
