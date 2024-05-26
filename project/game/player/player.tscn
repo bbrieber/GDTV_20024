@@ -1,15 +1,296 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjbvk6yp728xc"]
+[gd_scene load_steps=37 format=3 uid="uid://cjbvk6yp728xc"]
 
-[ext_resource type="Texture2D" uid="uid://dbruasxd53mb7" path="res://icon.svg" id="1_dhgqc"]
+[ext_resource type="Texture2D" uid="uid://cuksxd4r4hepx" path="res://sprites/Mage_SpriteSheet.png" id="1_41jcg"]
+[ext_resource type="Script" path="res://game/player/scripts/player.gd" id="1_48mkw"]
+[ext_resource type="Script" path="res://game/player/scripts/player_skin.gd" id="1_unklv"]
+[ext_resource type="Resource" uid="uid://cfh5dhpgj5p4o" path="res://game/player/resources/DefaultMovementConfig.tres" id="2_njw6o"]
+[ext_resource type="Resource" uid="uid://dmbsa7osmtlj1" path="res://game/player/resources/DefaultEnergy.tres" id="3_cxryf"]
+[ext_resource type="PackedScene" uid="uid://55web4m4dwee" path="res://game/player/scenes/Ghost.tscn" id="3_nj0dd"]
+[ext_resource type="Script" path="res://game/player/scripts/input_processor.gd" id="5_0fqa7"]
+[ext_resource type="Script" path="res://game/player/scripts/player_state.gd" id="6_stfaf"]
+[ext_resource type="Script" path="res://game/player/scripts/wall_ray.gd" id="8_fcv6v"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/state_machine.gd" id="9_yk45f"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_fall.gd" id="10_4ppgm"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_idle.gd" id="10_5ibka"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_any_dead.gd" id="12_fhdlw"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_any.gd" id="12_q20ki"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_death_idle.gd" id="13_kwwwl"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_jump.gd" id="13_trt23"]
+[ext_resource type="PackedScene" uid="uid://chea3blsxpci" path="res://game/player/scenes/HeadRay.tscn" id="14_g4ovr"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_fall_idle.gd" id="14_h76e6"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_fall_jump.gd" id="15_oy06w"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_move.gd" id="16_8njob"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_fall_move.gd" id="16_n5nww"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_idle_move.gd" id="17_6auur"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_jump_fall.gd" id="18_bf7l2"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_death.gd" id="19_1b85v"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_fall.gd" id="19_habeq"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_idle.gd" id="20_hyjdi"]
+[ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_jump.gd" id="21_jmlf1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h8arv"]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk82u"]
+size = Vector2(6, 16)
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_hjpu5"]
+
+[sub_resource type="Animation" id="Animation_qxhpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qp0pt"]
+resource_name = "fall"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_btnfh"]
+resource_name = "jump"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_xjeyl"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_bqcee"]
+resource_name = "start_jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ryxfe"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xi8kc"]
+_data = {
+"RESET": SubResource("Animation_qxhpb"),
+"fall": SubResource("Animation_qp0pt"),
+"idle": SubResource("Animation_ryxfe"),
+"jump": SubResource("Animation_btnfh"),
+"run": SubResource("Animation_xjeyl"),
+"start_jump": SubResource("Animation_bqcee")
+}
 
 [node name="Player" type="CharacterBody2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_dhgqc")
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_48mkw")
+player_movement_config = ExtResource("2_njw6o")
+initial_energy = ExtResource("3_cxryf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_h8arv")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_yk82u")
+
+[node name="PlayerSkin" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("1_unklv")
+player = NodePath("..")
+ghost_scene = ExtResource("3_nj0dd")
+
+[node name="SkinSprite" type="Sprite2D" parent="PlayerSkin"]
+position = Vector2(0, -9)
+texture = ExtResource("1_41jcg")
+hframes = 4
+vframes = 5
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerSkin"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationRootNode_hjpu5")
+
+[node name="SkinAnimationPlayer" type="AnimationPlayer" parent="PlayerSkin"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_xi8kc")
+}
+autoplay = "idle"
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="HeadRayLeft" parent="Raycasts" instance=ExtResource("14_g4ovr")]
+position = Vector2(-3, -15)
+
+[node name="HeadRayRight" parent="Raycasts" instance=ExtResource("14_g4ovr")]
+position = Vector2(3, -15)
+ray_offset = -1
+
+[node name="WallRaycast" type="Node2D" parent="Raycasts"]
+script = ExtResource("8_fcv6v")
+
+[node name="RayCastRight" type="RayCast2D" parent="Raycasts/WallRaycast"]
+position = Vector2(4, -6)
+target_position = Vector2(1, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="Raycasts/WallRaycast"]
+position = Vector2(-3, -6)
+target_position = Vector2(-2, 0)
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="InputProcessor" type="Node" parent="Managers"]
+unique_name_in_owner = true
+script = ExtResource("5_0fqa7")
+
+[node name="PlayerState" type="Node" parent="Managers" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("6_stfaf")
+player = NodePath("../..")
+
+[node name="StateMachine" type="Node" parent="Managers" node_paths=PackedStringArray("any_state", "player")]
+script = ExtResource("9_yk45f")
+initial_state = NodePath("States/StateIdle")
+any_state = NodePath("States/StateAny")
+player = NodePath("../..")
+
+[node name="Transitions" type="Node" parent="Managers/StateMachine"]
+
+[node name="TransAnyDead" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("12_fhdlw")
+start_state = NodePath("../../States/StateAny")
+target_state = NodePath("../../States/StateDeath")
+
+[node name="TransDeathIdle" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("13_kwwwl")
+start_state = NodePath("../../States/StateDeath")
+target_state = NodePath("../../States/StateIdle")
+
+[node name="TransFallIdle" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("14_h76e6")
+start_state = NodePath("../../States/StateFall")
+target_state = NodePath("../../States/StateIdle")
+
+[node name="TransFallJump" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("15_oy06w")
+start_state = NodePath("../../States/StateFall")
+target_state = NodePath("../../States/StateJump")
+
+[node name="TransFallMove" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("16_n5nww")
+start_state = NodePath("../../States/StateFall")
+target_state = NodePath("../../States/StateMove")
+
+[node name="TransIdleMove" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("17_6auur")
+start_state = NodePath("../../States/StateIdle")
+target_state = NodePath("../../States/StateMove")
+
+[node name="TransJumpFall" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("18_bf7l2")
+start_state = NodePath("../../States/StateJump")
+target_state = NodePath("../../States/StateFall")
+
+[node name="TransMoveFall" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("19_habeq")
+start_state = NodePath("../../States/StateMove")
+target_state = NodePath("../../States/StateFall")
+
+[node name="TransMoveIdle" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("20_hyjdi")
+start_state = NodePath("../../States/StateMove")
+target_state = NodePath("../../States/StateIdle")
+
+[node name="TransMoveJump" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("21_jmlf1")
+start_state = NodePath("../../States/StateMove")
+target_state = NodePath("../../States/StateJump")
+
+[node name="States" type="Node" parent="Managers/StateMachine"]
+
+[node name="StateFall" type="Node" parent="Managers/StateMachine/States"]
+script = ExtResource("10_4ppgm")
+
+[node name="StateIdle" type="Node" parent="Managers/StateMachine/States"]
+script = ExtResource("10_5ibka")
+
+[node name="StateAny" type="Node" parent="Managers/StateMachine/States"]
+script = ExtResource("12_q20ki")
+
+[node name="StateJump" type="Node" parent="Managers/StateMachine/States" node_paths=PackedStringArray("jump_head_cast_left", "jump_head_cast_right")]
+script = ExtResource("13_trt23")
+jump_head_cast_left = NodePath("../../../../Raycasts/HeadRayLeft")
+jump_head_cast_right = NodePath("../../../../Raycasts/HeadRayRight")
+
+[node name="StateMove" type="Node" parent="Managers/StateMachine/States" node_paths=PackedStringArray("wallRaycast")]
+script = ExtResource("16_8njob")
+wallRaycast = NodePath("../../../../Raycasts/WallRaycast")
+
+[node name="StateDeath" type="Node" parent="Managers/StateMachine/States"]
+script = ExtResource("19_1b85v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -8)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

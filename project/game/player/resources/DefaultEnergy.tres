@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Energy" load_steps=2 format=3 uid="uid://dmbsa7osmtlj1"]
+
+[ext_resource type="Script" path="res://game/player/scripts/energy.gd" id="1_xdg72"]
+
+[resource]
+script = ExtResource("1_xdg72")
+max_energy = 10

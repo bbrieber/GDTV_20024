@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://chea3blsxpci"]
+
+[ext_resource type="Script" path="res://game/player/scripts/head_ray.gd" id="1_g485x"]
+
+[node name="HeadRay" type="Node2D"]
+script = ExtResource("1_g485x")
+ray_length = 2
+ray_offset = 1
+
+[node name="RayCastCorner" type="RayCast2D" parent="."]
+target_position = Vector2(0, -3)
+
+[node name="RayCastBuffer" type="RayCast2D" parent="RayCastCorner"]
+position = Vector2(-1, 0)
+target_position = Vector2(0, -3)

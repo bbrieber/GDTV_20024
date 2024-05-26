@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlayerMovementConfig" load_steps=2 format=3 uid="uid://cfh5dhpgj5p4o"]
+
+[ext_resource type="Script" path="res://game/player/scripts/player_movement_config.gd" id="1_pspq1"]
+
+[resource]
+script = ExtResource("1_pspq1")
+run_time_to_peak = 0.2
+run_time_to_stop = 0.2
+run_velocity = 128.0
+jump_height = 40.0
+jump_time_to_peak = 0.4
+jump_time_to_descend = 0.35
+glide_time_to_descend = 1.0
+jump_stop_factor = 2.0
+jump_coyote_time = 0.2
+time_to_max_fallspeed = 0.3
+slide_time_to_descend = 0.6
+dash_distance = 64.0
+dash_time_to_peak = 0.4
+dash_stop_factor = 4.0
+climb_velocity = 128.0
+climb_time_to_peak = 0.6
+climb_energy_per_second = 0.5
+glide_energy_per_second = 0.5
+fade_energy_per_second = 0.5
+dash_energy = 5.0
+recover_energy_per_second = 2.0
