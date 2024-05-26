@@ -19,3 +19,4 @@ func _ready()->void:
 
 func on_hit()->void:
 	player_state.kill_player()
+

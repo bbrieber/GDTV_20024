@@ -265,6 +265,11 @@ script = ExtResource("21_jmlf1")
 start_state = NodePath("../../States/StateMove")
 target_state = NodePath("../../States/StateJump")
 
+[node name="TransIdleJump" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("21_jmlf1")
+start_state = NodePath("../../States/StateIdle")
+target_state = NodePath("../../States/StateJump")
+
 [node name="States" type="Node" parent="Managers/StateMachine"]
 
 [node name="StateFall" type="Node" parent="Managers/StateMachine/States"]

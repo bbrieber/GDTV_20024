@@ -2,4 +2,4 @@ extends StateTransition
 
 
 func should_transition() -> bool:
-	return owner.velocity.y > 0
+	return player.velocity.y >= 0
