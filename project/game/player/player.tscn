@@ -65,6 +65,23 @@ tracks/0/keys = {
 "values": [12, 13]
 }
 
+[sub_resource type="Animation" id="Animation_ryxfe"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="Animation" id="Animation_btnfh"]
 resource_name = "jump"
 length = 0.4
@@ -113,23 +130,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_ryxfe"]
-resource_name = "Idle"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSkin/SkinSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xi8kc"]
@@ -295,7 +295,10 @@ script = ExtResource("19_1b85v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -8)
-position_smoothing_enabled = true
+limit_left = 0
+limit_top = 0
+limit_right = 320
+limit_bottom = 180
 position_smoothing_speed = 8.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
