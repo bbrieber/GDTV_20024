@@ -1,15 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dej10uwwpopke"]
+[gd_scene load_steps=5 format=3 uid="uid://dej10uwwpopke"]
 
 [ext_resource type="TileSet" uid="uid://ixppymwb2gwt" path="res://game/tileSets/test_set.tres" id="1_f06cn"]
 [ext_resource type="PackedScene" uid="uid://cjbvk6yp728xc" path="res://game/player/player.tscn" id="2_d6o1q"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hntq"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(160, 1, 1)
-direction = Vector3(1, -1, 0)
-gravity = Vector3(0, 98, 0)
-turbulence_enabled = true
+[ext_resource type="PackedScene" uid="uid://up0hmmu1lpuh" path="res://vfx/snow.tscn" id="3_ybg4l"]
+[ext_resource type="PackedScene" uid="uid://pegtgufqtxfc" path="res://vfx/Flame.tscn" id="4_un0gs"]
 
 [node name="MapTest" type="Node2D"]
 
@@ -26,9 +20,13 @@ position = Vector2(61, 64)
 
 [node name="Camera2D" type="Camera2D" parent="CameraTarget"]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(160, 0)
-amount = 120
-process_material = SubResource("ParticleProcessMaterial_3hntq")
-lifetime = 15.0
-preprocess = 15.0
+[node name="Snow" parent="." instance=ExtResource("3_ybg4l")]
+
+[node name="Flame" parent="." instance=ExtResource("4_un0gs")]
+position = Vector2(121, 60)
+
+[node name="Flame2" parent="." instance=ExtResource("4_un0gs")]
+position = Vector2(171, 41)
+
+[node name="Flame3" parent="." instance=ExtResource("4_un0gs")]
+position = Vector2(229, 44)

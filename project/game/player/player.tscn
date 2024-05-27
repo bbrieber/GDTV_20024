@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cjbvk6yp728xc"]
+[gd_scene load_steps=38 format=3 uid="uid://cjbvk6yp728xc"]
 
 [ext_resource type="Texture2D" uid="uid://cuksxd4r4hepx" path="res://sprites/Mage_SpriteSheet.png" id="1_41jcg"]
 [ext_resource type="Script" path="res://game/player/scripts/player.gd" id="1_48mkw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://55web4m4dwee" path="res://game/player/scenes/Ghost.tscn" id="3_nj0dd"]
 [ext_resource type="Script" path="res://game/player/scripts/input_processor.gd" id="5_0fqa7"]
 [ext_resource type="Script" path="res://game/player/scripts/player_state.gd" id="6_stfaf"]
+[ext_resource type="PackedScene" uid="uid://d27j0tghj30yf" path="res://vfx/SmallFlame.tscn" id="7_pmkos"]
 [ext_resource type="Script" path="res://game/player/scripts/wall_ray.gd" id="8_fcv6v"]
 [ext_resource type="Script" path="res://game/player/scripts/state_machine/state_machine.gd" id="9_yk45f"]
 [ext_resource type="Script" path="res://game/player/scripts/state_machine/states/state_fall.gd" id="10_4ppgm"]
@@ -160,6 +161,8 @@ player = NodePath("..")
 ghost_scene = ExtResource("3_nj0dd")
 
 [node name="SkinSprite" type="Sprite2D" parent="PlayerSkin"]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, -9)
 texture = ExtResource("1_41jcg")
 hframes = 4
@@ -175,6 +178,15 @@ libraries = {
 "": SubResource("AnimationLibrary_xi8kc")
 }
 autoplay = "idle"
+
+[node name="Node2D" type="Node2D" parent="PlayerSkin"]
+position = Vector2(4, -6)
+
+[node name="Flame" parent="PlayerSkin/Node2D" instance=ExtResource("7_pmkos")]
+position = Vector2(-16, -6)
+interpolate = false
+fract_delta = false
+local_coords = true
 
 [node name="Raycasts" type="Node2D" parent="."]
 

@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://pegtgufqtxfc"]
+
+[ext_resource type="Texture2D" uid="uid://dbsrohhlkmwqf" path="res://vfx/Smoke_Buff.png" id="1_d6fif"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41i6k"]
+blend_mode = 1
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_x4bgk"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.269058, 0.989011), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pdeaf"]
+curve = SubResource("Curve_x4bgk")
+
+[sub_resource type="Gradient" id="Gradient_doexo"]
+colors = PackedColorArray(0.994137, 0.703662, 0.608586, 1, 0.98974, 0.775194, 0.698377, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ppoon"]
+gradient = SubResource("Gradient_doexo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jpj2n"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, -1, 0)
+spread = 24.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.633307, 0.470537, 0.153787, 1)
+color_ramp = SubResource("GradientTexture1D_ppoon")
+alpha_curve = SubResource("CurveTexture_pdeaf")
+anim_speed_max = 1.0
+
+[node name="Flame" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_41i6k")
+amount = 27
+process_material = SubResource("ParticleProcessMaterial_jpj2n")
+texture = ExtResource("1_d6fif")
+lifetime = 2.0

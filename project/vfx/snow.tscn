@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://up0hmmu1lpuh"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hntq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 1, 1)
+direction = Vector3(1, -1, 0)
+gravity = Vector3(0, 98, 0)
+turbulence_enabled = true
+
+[node name="Snow" type="GPUParticles2D"]
+position = Vector2(160, 0)
+amount = 120
+process_material = SubResource("ParticleProcessMaterial_3hntq")
+lifetime = 15.0
+preprocess = 15.0
