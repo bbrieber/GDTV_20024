@@ -20,6 +20,7 @@ AlEnergySystem="*res://globals/scripts/al_energy_system.gd"
 SceneTransition="*res://Components/UI/Menu/scenes/scene_transition.tscn"
 GameSettingsManager="*res://Components/globals/game_settings_manager.gd"
 GlobalSignalDispatcher="*res://Components/globals/global_signal_dispatcher.gd"
+GlobalViewportLink="*res://Components/UI/viewport_link/scripts/global_viewport_link.gd"
 
 [display]
 

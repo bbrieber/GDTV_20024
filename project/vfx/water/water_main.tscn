@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhobv4i6d35ks"]
+
+[ext_resource type="PackedScene" uid="uid://dje5w4a8mdt68" path="res://vfx/water/water_body.tscn" id="1_bcx0f"]
+
+[node name="WaterMain" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WaterBody" parent="." instance=ExtResource("1_bcx0f")]
+distance_between_springs = 31
+spring_number = 10
+color = Color(0.522219, 0.846265, 0.99244, 0.580392)

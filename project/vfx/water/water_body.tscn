@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dje5w4a8mdt68"]
+
+[ext_resource type="Script" path="res://vfx/water/water_body.gd" id="1_x42l8"]
+[ext_resource type="Material" uid="uid://wr7tbjg846lo" path="res://vfx/water/water_body.material" id="2_ns4gl"]
+[ext_resource type="Script" path="res://vfx/water/smooth_path.gd" id="3_gii3l"]
+
+[sub_resource type="Curve2D" id="Curve2D_2l084"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[node name="WaterBody" type="Node2D"]
+script = ExtResource("1_x42l8")
+
+[node name="WaterPolygon" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+material = ExtResource("2_ns4gl")
+
+[node name="WaterBorder" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_2l084")
+script = ExtResource("3_gii3l")
+color = Color(1, 1, 1, 0.0862745)
