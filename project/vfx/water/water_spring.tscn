@@ -7,18 +7,19 @@
 size = Vector2(20, 2)
 
 [node name="Area2D" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_vtius")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_3mxvw")
 
-[node name="WaterSpring" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="WaterSpring"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 0.172549, 1)
 texture = ExtResource("2_hk1ol")
+
+[node name="WaterSpring" type="Node2D" parent="."]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

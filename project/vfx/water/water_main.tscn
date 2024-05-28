@@ -8,5 +8,4 @@
 
 [node name="WaterBody" parent="." instance=ExtResource("1_bcx0f")]
 distance_between_springs = 31
-spring_number = 10
 color = Color(0.522219, 0.846265, 0.99244, 0.580392)

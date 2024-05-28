@@ -43,7 +43,7 @@ var motion_modifier :float = 1
 signal splash(index:int,speed:float)
 
 func _on_body_entered(body:Node2D):
-	var speed = motion_modifier
+	var speed = motion_modifier 
 	splash.emit(index,speed)
 	
 	

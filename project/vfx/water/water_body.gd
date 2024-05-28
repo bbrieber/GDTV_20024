@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 
 
@@ -9,20 +9,22 @@ extends Node2D
 @export var passes: int = 8
 
 @export var distance_between_springs: int = 8
-@export var spring_number: int = 6
+var spring_number: int = 6
 
 @onready var water_spring_scene = preload("res://vfx/water/water_spring.tscn") 
 
 @onready var water_polygon :Polygon2D = %WaterPolygon
 @onready var water_border :SmoothPath = %WaterBorder
 @export  var color : Color = Color(1,1,1,1)
-@export var border_thickness = 1
+@export var border_thickness = 0.5
 
-@export var depth:int = 180
+@export var collision_shape: CollisionShape2D 
+
+var depth:int
 
 
-var target_height:float = global_position.y
-var bottom:float = target_height + depth
+var target_height:float 
+var bottom:float 
 
 var springs :Array=[]
 
@@ -31,15 +33,25 @@ func _ready()->void:
 	water_border.width = border_thickness
 	water_border.color = color
 	
+	
+	var rect :Rect2 = collision_shape.shape.get_rect()
+	print(rect.size)
+	print(rect.position)
+	depth = rect.size.y
+	target_height = rect.position.y +collision_shape.position.y 
+	bottom = target_height + depth
+	
+	spring_number = rect.size.x /distance_between_springs + 1
+	
 	for i in range(spring_number):
-		var x_position = distance_between_springs * i
+		var x_position =  rect.position.x +collision_shape.position.x + distance_between_springs * i
 		var w :WaterSpring= water_spring_scene.instantiate()
 		add_child(w)
 		springs.append(		w)
 		w.initialize(x_position,distance_between_springs,i)
 		w.splash.connect(splash)
 			
-	splash(2,5)
+	#splash(2,5)
 func _process(_delta:float)->void:
 	new_border()
 	draw_water_body()
@@ -54,6 +66,8 @@ func _physics_process(_delta:float) -> void :
 		right_deltas.append(0)	
 	for p :int in range(passes):
 		for i in range(springs.size()):
+			
+			
 			if i > 0:
 				left_deltas[i] = spread * (springs[i].height -springs[i-1].height )
 				springs[i-1].velocity +=left_deltas[i]
@@ -61,6 +75,8 @@ func _physics_process(_delta:float) -> void :
 				right_deltas[i] = spread * (springs[i].height -springs[i+1].height )
 				springs[i+1].velocity +=right_deltas[i]
 
+	springs[0].velocity = 0
+	springs[springs.size() -1].velocity = 0
 
 func splash(index:int,speed:float)->void:
 	if index<0 or index >springs.size():
