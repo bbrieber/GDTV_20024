@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dej10uwwpopke"]
+[gd_scene load_steps=8 format=3 uid="uid://dej10uwwpopke"]
 
 [ext_resource type="TileSet" uid="uid://ixppymwb2gwt" path="res://game/tileSets/test_set.tres" id="1_f06cn"]
 [ext_resource type="PackedScene" uid="uid://cjbvk6yp728xc" path="res://game/player/player.tscn" id="2_d6o1q"]
 [ext_resource type="PackedScene" uid="uid://up0hmmu1lpuh" path="res://vfx/snow.tscn" id="3_ybg4l"]
 [ext_resource type="PackedScene" uid="uid://pegtgufqtxfc" path="res://vfx/Flame.tscn" id="4_un0gs"]
 [ext_resource type="PackedScene" uid="uid://dje5w4a8mdt68" path="res://vfx/water/water_body.tscn" id="5_1oe6l"]
+[ext_resource type="PackedScene" uid="uid://3aaptmxqk8bq" path="res://vfx/IceFlame.tscn" id="6_f78kh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1yr"]
-size = Vector2(80, 9)
+size = Vector2(74, 7)
 
 [node name="MapTest" type="Node2D"]
 
@@ -40,8 +41,18 @@ position = Vector2(229, 44)
 z_index = -1
 position = Vector2(173, 169)
 collision_mask = 3
+border_thickness = 1.0
 collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterBody"]
-position = Vector2(30, 5.5)
+position = Vector2(31, 4.5)
 shape = SubResource("RectangleShape2D_fp1yr")
+
+[node name="IceFlame" parent="." instance=ExtResource("6_f78kh")]
+position = Vector2(19, 54)
+
+[node name="IceFlame2" parent="." instance=ExtResource("6_f78kh")]
+position = Vector2(173, 64)
+
+[node name="IceFlame3" parent="." instance=ExtResource("6_f78kh")]
+position = Vector2(227, 95)

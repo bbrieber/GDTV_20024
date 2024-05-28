@@ -51,7 +51,7 @@ func _ready()->void:
 		w.initialize(x_position,distance_between_springs,i)
 		w.splash.connect(splash)
 			
-	#splash(2,5)
+	splash(spring_number / 2, 0.5)
 func _process(_delta:float)->void:
 	new_border()
 	draw_water_body()

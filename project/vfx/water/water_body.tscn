@@ -8,6 +8,7 @@
 
 [node name="WaterBody" type="Area2D"]
 script = ExtResource("1_x42l8")
+color = Color(0.501961, 0.701961, 0.788235, 0.529412)
 
 [node name="WaterPolygon" type="Polygon2D" parent="."]
 unique_name_in_owner = true
