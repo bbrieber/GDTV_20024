@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bln5mg8ui7h55"]
+
+[ext_resource type="Script" path="res://game/prefabs/map/scripts/tile_spawner.gd" id="1_4x3fs"]
+[ext_resource type="PackedScene" uid="uid://cebignq42g42j" path="res://game/prefabs/map/breaking_tile.tscn" id="2_qyjj0"]
+
+[node name="BreakingTileSpawner" type="Node2D"]
+script = ExtResource("1_4x3fs")
+tile_prefab = ExtResource("2_qyjj0")

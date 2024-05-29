@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://cebignq42g42j"]
+
+[ext_resource type="Texture2D" uid="uid://bye5juom8v8ex" path="res://sprites/maps/Breaking_Tile.png" id="1_7pkjg"]
+[ext_resource type="Script" path="res://game/prefabs/map/scripts/breaking_tile.gd" id="1_pnx3k"]
+[ext_resource type="PackedScene" uid="uid://b7haxum3fqox3" path="res://vfx/vfx_destroy_breaking_tile.tscn" id="2_6q8ew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prdde"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_jb08x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_86uv1"]
+resource_name = "default"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ld57i"]
+resource_name = "destroy"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_tile"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w4n5"]
+_data = {
+"RESET": SubResource("Animation_jb08x"),
+"default": SubResource("Animation_86uv1"),
+"destroy": SubResource("Animation_ld57i")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfum"]
+size = Vector2(8, 2)
+
+[node name="BreakingTile" type="StaticBody2D"]
+script = ExtResource("1_pnx3k")
+destroy_vfx = ExtResource("2_6q8ew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_prdde")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7pkjg")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_4w4n5")
+}
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_5kfum")
+debug_color = Color(0.587097, 0.548436, 0.0575245, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

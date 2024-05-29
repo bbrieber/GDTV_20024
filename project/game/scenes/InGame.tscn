@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://tfohggghnb06"]
+[gd_scene load_steps=3 format=3 uid="uid://tfohggghnb06"]
 
 [ext_resource type="PackedScene" uid="uid://dej10uwwpopke" path="res://game/scenes/Map_Test.tscn" id="1_x0ley"]
+
+[sub_resource type="Environment" id="Environment_n5lx0"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 3.36
+glow_strength = 1.13
+glow_blend_mode = 0
+glow_hdr_scale = 1.42
 
 [node name="InGame" type="Node"]
 
@@ -24,3 +32,6 @@ render_target_update_mode = 4
 [node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport"]
 
 [node name="MapTest" parent="SubViewportContainer/SubViewport/Node2D" instance=ExtResource("1_x0ley")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_n5lx0")

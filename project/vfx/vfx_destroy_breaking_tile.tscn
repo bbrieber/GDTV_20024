@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7haxum3fqox3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nwqqa"]
+
+[sub_resource type="Curve" id="Curve_aydbb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.219731, 0.835165), 0.0, 0.0, 0, 0, Vector2(0.632287, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kfvxg"]
+curve = SubResource("Curve_aydbb")
+
+[sub_resource type="Gradient" id="Gradient_c6gvs"]
+offsets = PackedFloat32Array(0, 0.548718)
+colors = PackedColorArray(0.259294, 0.259294, 0.259294, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n36nj"]
+gradient = SubResource("Gradient_c6gvs")
+
+[sub_resource type="Curve" id="Curve_r3ea1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1ak21"]
+curve = SubResource("Curve_r3ea1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xaiur"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 1)
+inherit_velocity_ratio = 1.0
+spread = 180.0
+flatness = 0.138
+initial_velocity_min = 30.0
+initial_velocity_max = 45.0
+gravity = Vector3(0, 10, 0)
+damping_min = 3.67
+damping_max = 11.009
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_1ak21")
+color = Color(0.185258, 0.222814, 0.397151, 1)
+color_initial_ramp = SubResource("GradientTexture1D_n36nj")
+alpha_curve = SubResource("CurveTexture_kfvxg")
+turbulence_enabled = true
+
+[node name="VfxDestroyBreakingTile" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_nwqqa")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_xaiur")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0

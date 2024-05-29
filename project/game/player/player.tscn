@@ -153,6 +153,7 @@ initial_energy = ExtResource("3_cxryf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_yk82u")
+debug_color = Color(0.794939, 0.0659271, 1, 0.42)
 
 [node name="PlayerSkin" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
@@ -256,6 +257,11 @@ target_state = NodePath("../../States/StateMove")
 script = ExtResource("17_6auur")
 start_state = NodePath("../../States/StateIdle")
 target_state = NodePath("../../States/StateMove")
+
+[node name="TransIdleFall" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
+script = ExtResource("19_habeq")
+start_state = NodePath("../../States/StateIdle")
+target_state = NodePath("../../States/StateFall")
 
 [node name="TransJumpFall" type="Node" parent="Managers/StateMachine/Transitions" node_paths=PackedStringArray("start_state", "target_state")]
 script = ExtResource("18_bf7l2")
