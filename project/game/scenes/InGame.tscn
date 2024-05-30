@@ -12,7 +12,16 @@ glow_hdr_scale = 1.42
 
 [node name="InGame" type="Node"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,18 +29,22 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 stretch_shrink = 6
-metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport"]
+[node name="Node2D" type="Node2D" parent="Control/SubViewportContainer/SubViewport"]
 
-[node name="MapTest" parent="SubViewportContainer/SubViewport/Node2D" instance=ExtResource("1_x0ley")]
+[node name="MapTest" parent="Control/SubViewportContainer/SubViewport/Node2D" instance=ExtResource("1_x0ley")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Control/SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_n5lx0")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
