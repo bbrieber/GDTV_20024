@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="FxcStateMaschineResource" load_steps=2 format=3 uid="uid://ckhdqao6bwt4p"]
+
+[ext_resource type="Script" path="res://addons/fxc_state_machine/fxc_state_maschine_resource.gd" id="1_qy8g0"]
+
+[resource]
+script = ExtResource("1_qy8g0")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqya6xw4m855q"]
+
+[ext_resource type="Script" path="res://addons/fxc_state_machine/fxc_state_machine_ui.gd" id="1_ci463"]
+[ext_resource type="Resource" uid="uid://ckhdqao6bwt4p" path="res://addons/fxc_state_machine/sample/resources/player_state_maschine.tres" id="2_bd0f5"]
+[ext_resource type="Script" path="res://addons/fxc_state_machine/fx_state_maschine_graph_node.gd" id="2_t60bq"]
+
+[node name="FxcStateMachine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ci463")
+state_maschine = ExtResource("2_bd0f5")
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphNode" type="GraphNode" parent="GraphEdit"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 444.0
+offset_right = 493.0
+offset_bottom = 499.0
+mouse_filter = 1
+position_offset = Vector2(173, 444)
+resizable = true
+title = "TestNode"
+script = ExtResource("2_t60bq")

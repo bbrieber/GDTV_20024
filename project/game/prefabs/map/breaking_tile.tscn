@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cebignq42g42j"]
 
 [ext_resource type="Texture2D" uid="uid://bye5juom8v8ex" path="res://sprites/maps/Breaking_Tile.png" id="1_7pkjg"]
-[ext_resource type="Script" path="res://game/prefabs/map/scripts/breaking_tile.gd" id="1_pnx3k"]
+[ext_resource type="Script" path="res://game/breaking_tile.gd" id="1_pnx3k"]
 [ext_resource type="PackedScene" uid="uid://b7haxum3fqox3" path="res://vfx/vfx_destroy_breaking_tile.tscn" id="2_6q8ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prdde"]
