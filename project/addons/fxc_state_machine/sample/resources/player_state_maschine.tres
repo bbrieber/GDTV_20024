@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_qy8g0")
+states = Array[Resource("res://addons/fxc_state_machine/fxc_state.gd")]([null])
+transitions = Array[Resource("res://addons/fxc_state_machine/fxc_transition.gd")]([])

@@ -21,6 +21,7 @@ func _enter_tree():
 
 func _exit_tree():
 	if main_panel_instance:
+		remove_control_from_bottom_panel(main_panel_instance)
 		main_panel_instance.queue_free()
 
 
