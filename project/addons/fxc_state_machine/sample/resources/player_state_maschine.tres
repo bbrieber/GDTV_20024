@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FxcStateMaschineResource" load_steps=2 format=3 uid="uid://ckhdqao6bwt4p"]
 
-[ext_resource type="Script" path="res://addons/fxc_state_machine/fxc_state_maschine_resource.gd" id="1_qy8g0"]
+[ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state_maschine_resource.gd" id="1_6qq1g"]
 
 [resource]
-script = ExtResource("1_qy8g0")
-states = Array[Resource("res://addons/fxc_state_machine/fxc_state.gd")]([null])
-transitions = Array[Resource("res://addons/fxc_state_machine/fxc_transition.gd")]([])
+script = ExtResource("1_6qq1g")
+states = Array[Resource("res://addons/fxc_state_machine/core/fxc_state.gd")]([null])
+transitions = Array[Resource("res://addons/fxc_state_machine/core/fxc_transition.gd")]([])

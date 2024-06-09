@@ -22,6 +22,11 @@ GameSettingsManager="*res://Components/globals/game_settings_manager.gd"
 GlobalSignalDispatcher="*res://Components/globals/global_signal_dispatcher.gd"
 GlobalViewportLink="*res://Components/UI/viewport_link/scripts/global_viewport_link.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
+
 [display]
 
 window/size/viewport_width=1920
