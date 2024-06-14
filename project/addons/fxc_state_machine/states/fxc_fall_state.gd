@@ -1,7 +1,7 @@
-class_name FxcIdleState extends FxcActorState
+class_name FxcFallState extends FxcActorState
 
 func get_state_name() -> StringName:
-	return "Idle"
+	return "Fall"
 
 
 func enter(_msg :Dictionary= {}) -> void:
