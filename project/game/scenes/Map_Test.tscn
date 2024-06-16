@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dej10uwwpopke"]
+[gd_scene load_steps=17 format=3 uid="uid://dej10uwwpopke"]
 
 [ext_resource type="TileSet" uid="uid://ixppymwb2gwt" path="res://game/tileSets/test_set.tres" id="1_f06cn"]
 [ext_resource type="PackedScene" uid="uid://cjbvk6yp728xc" path="res://game/player/player.tscn" id="2_d6o1q"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cduoea4o263d4" path="res://sprites/assets/Tree_4.png" id="11_3xtc2"]
 [ext_resource type="Shader" path="res://game/scenes/Map_Test.gdshader" id="12_v8llt"]
 [ext_resource type="Texture2D" uid="uid://bsfy48jskrxlo" path="res://sprites/assets/Grass_1.png" id="13_flw8y"]
+[ext_resource type="PackedScene" uid="uid://dqwjk74mi65r7" path="res://vfx/waterfall/Waterfall_Tile_Left.tscn" id="14_g8ut8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1yr"]
 size = Vector2(74, 7)
@@ -115,3 +116,6 @@ material = SubResource("ShaderMaterial_ilyqa")
 position = Vector2(244, 60)
 texture = ExtResource("13_flw8y")
 hframes = 6
+
+[node name="Node" parent="." instance=ExtResource("14_g8ut8")]
+position = Vector2(65, 35)
