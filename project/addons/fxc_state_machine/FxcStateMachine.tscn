@@ -1,17 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqya6xw4m855q"]
+[gd_scene load_steps=11 format=3 uid="uid://cqya6xw4m855q"]
 
 [ext_resource type="Script" path="res://addons/fxc_state_machine/ui/fxc_state_machine_ui.gd" id="1_0utrf"]
 [ext_resource type="Resource" uid="uid://ckhdqao6bwt4p" path="res://addons/fxc_state_machine/sample/resources/player_state_maschine.tres" id="2_bd0f5"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/ui/fx_state_maschine_graph_node.gd" id="3_mxp7a"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state.gd" id="4_f618j"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/states/fxc_idle_state.gd" id="5_2s5bi"]
 
 [sub_resource type="Resource" id="Resource_xhtp1"]
 script = ExtResource("4_f618j")
-init_state = false
-
-[sub_resource type="Resource" id="Resource_i1b2o"]
-script = ExtResource("5_2s5bi")
 init_state = false
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xea4t"]
@@ -203,7 +198,6 @@ slot/1/right_color = Color(0.745098, 0.745098, 0.745098, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("3_mxp7a")
-state = SubResource("Resource_i1b2o")
 
 [node name="InputSlot" type="Label" parent="VBoxContainer/FxcStateMachine/GraphEdit/GraphNode2"]
 layout_mode = 2
@@ -243,7 +237,6 @@ slot/1/right_color = Color(0.745098, 0.745098, 0.745098, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("3_mxp7a")
-state = SubResource("Resource_i1b2o")
 
 [node name="InputSlot" type="Label" parent="VBoxContainer/FxcStateMachine/GraphEdit/GraphNode3"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-class_name FxcActorMovementCore extends Node2D
+class_name FxcActorMovementCore extends Node
 
 
 @export var actor : FxcActor

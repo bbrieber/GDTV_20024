@@ -10,7 +10,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for state :FxcState in state_maschine.get_states():
+	for state : FxcState in state_maschine.get_states():
 		print(state.get_state_name())
 		
 	pass # Replace with function body.

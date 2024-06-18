@@ -16,8 +16,8 @@ func get_any_state() -> FxcState:
 	return any_state
 
 func get_states()->  Array[FxcState] :
-	if states.is_empty():
-		states.append(FxcIdleState.new())
-		states.append(FxcState.new())
+#	if states.is_empty():
+#		states.append(FxcIdleState.new())
+#		states.append(FxcState.new())
 		
 	return states
