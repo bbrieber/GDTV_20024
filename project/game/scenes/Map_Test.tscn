@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dej10uwwpopke"]
+[gd_scene load_steps=17 format=3 uid="uid://dej10uwwpopke"]
 
 [ext_resource type="TileSet" uid="uid://ixppymwb2gwt" path="res://game/tileSets/test_set.tres" id="1_f06cn"]
 [ext_resource type="PackedScene" uid="uid://cjbvk6yp728xc" path="res://game/player/player.tscn" id="2_d6o1q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://y3ndostserwh" path="res://sprites/assets/Tree_3.png" id="10_6dtop"]
 [ext_resource type="Texture2D" uid="uid://cduoea4o263d4" path="res://sprites/assets/Tree_4.png" id="11_3xtc2"]
 [ext_resource type="Shader" path="res://game/scenes/Map_Test.gdshader" id="12_v8llt"]
+[ext_resource type="Texture2D" uid="uid://cipynugedn5w5" path="res://sprites/assets/Grass_1-Wind.png" id="13_30cgj"]
 [ext_resource type="Texture2D" uid="uid://bsfy48jskrxlo" path="res://sprites/assets/Grass_1.png" id="13_flw8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1yr"]
@@ -20,14 +21,15 @@ size = Vector2(74, 7)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ilyqa"]
 shader = ExtResource("12_v8llt")
 shader_parameter/speed = 1.0
-shader_parameter/minStrength = 0.01
-shader_parameter/maxStrength = 0.02
+shader_parameter/minStrength = 0
+shader_parameter/maxStrength = 2
 shader_parameter/strengthScale = 150.0
 shader_parameter/interval = 3.735
 shader_parameter/detail = 0.045
 shader_parameter/distortion = 0.0
 shader_parameter/heightOffset = 0.0
 shader_parameter/offset = 0.0
+shader_parameter/windTexture = ExtResource("13_30cgj")
 
 [node name="MapTest" type="Node2D"]
 

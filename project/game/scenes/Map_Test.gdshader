@@ -15,8 +15,8 @@ render_mode blend_mix;
 
 // Wind settings.
 uniform float speed = 1.0;
-uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
-uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform int minStrength : hint_range(0, 2) = 0;
+uniform int maxStrength : hint_range(0, 2) = 2;
 uniform float strengthScale = 100.0;
 uniform float interval = 3.5;
 uniform float detail = 1.0;
@@ -26,18 +26,26 @@ uniform float heightOffset : hint_range(0.0, 1.0);
 // With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
 uniform float offset = 0; 
 
+uniform sampler2D windTexture : source_color;
 
-float getWind(vec2 vertex, vec2 uv, float time){
-    float diff = pow(maxStrength - minStrength, 2.0);
-    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
-    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
-    
-    return wind; 
+
+float getWind( vec2 uv, float time){
+	float stength = floor (texture(windTexture,uv).r * (sin(time *speed )+1.0) * 4.0);
+	    
+    return stength; 
 }
 
-void vertex() {
-    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+void fragment() {
     float time = TIME * speed + offset;
-    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
-    VERTEX.x += getWind(VERTEX.xy, UV, time);
+    
+	
+	float pixel_offset = getWind( UV, time)* TEXTURE_PIXEL_SIZE.x;
+	
+	POINT_COORD.x += pixel_offset;
+	
+	////getWind( UV, time)
+	vec2 uv = vec2(UV.x + 1.0 * TEXTURE_PIXEL_SIZE.x,UV.y );
+	//COLOR = texture(TEXTURE, 	uv );
+	//float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+
 }
