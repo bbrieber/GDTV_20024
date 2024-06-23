@@ -1,8 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://cjbvk6yp728xc"]
+[gd_scene load_steps=47 format=3 uid="uid://cjbvk6yp728xc"]
 
 [ext_resource type="Texture2D" uid="uid://cuksxd4r4hepx" path="res://sprites/Mage_SpriteSheet.png" id="1_41jcg"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player.gd" id="1_p01if"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_skin.gd" id="4_2ehab"]
+[ext_resource type="Script" path="res://game/player/scripts/player.gd" id="1_48mkw"]
+[ext_resource type="Script" path="res://game/player/scripts/player_skin.gd" id="1_unklv"]
+[ext_resource type="Resource" uid="uid://cfh5dhpgj5p4o" path="res://game/player/resources/DefaultMovementConfig.tres" id="2_njw6o"]
+[ext_resource type="Resource" uid="uid://dmbsa7osmtlj1" path="res://game/player/resources/DefaultEnergy.tres" id="3_cxryf"]
+[ext_resource type="PackedScene" uid="uid://55web4m4dwee" path="res://game/player/scenes/Ghost.tscn" id="3_nj0dd"]
 [ext_resource type="Script" path="res://game/player/scripts/input_processor.gd" id="5_0fqa7"]
 [ext_resource type="Script" path="res://game/player/scripts/player_state.gd" id="6_stfaf"]
 [ext_resource type="PackedScene" uid="uid://d27j0tghj30yf" path="res://vfx/SmallFlame.tscn" id="7_pmkos"]
@@ -25,12 +28,10 @@
 [ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_fall.gd" id="19_habeq"]
 [ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_idle.gd" id="20_hyjdi"]
 [ext_resource type="Script" path="res://game/player/scripts/state_machine/transitions/trans_move_jump.gd" id="21_jmlf1"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_status.gd" id="29_gsq1m"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state_maschine.gd" id="29_nqham"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state_maschine_resource.gd" id="30_eqafv"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state.gd" id="30_yoev4"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_movement_core.gd" id="32_mx3sh"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_input.gd" id="33_fbase"]
+[ext_resource type="Script" path="res://addons/fxc_state_machine/states/fxc_idle_state.gd" id="32_7h78g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk82u"]
 size = Vector2(6, 16)
@@ -154,9 +155,17 @@ init_state = false
 script = ExtResource("30_yoev4")
 init_state = false
 
+[sub_resource type="Resource" id="Resource_tsf7b"]
+script = ExtResource("30_yoev4")
+init_state = false
+
+[sub_resource type="Resource" id="Resource_7k31o"]
+script = ExtResource("32_7h78g")
+init_state = false
+
 [sub_resource type="Resource" id="Resource_k42ot"]
 script = ExtResource("30_eqafv")
-states = Array[ExtResource("30_yoev4")]([])
+states = Array[ExtResource("30_yoev4")]([SubResource("Resource_tsf7b"), SubResource("Resource_7k31o")])
 transitions = Array[Resource("res://addons/fxc_state_machine/core/fxc_transition.gd")]([])
 init_state = SubResource("Resource_lobin")
 any_state = SubResource("Resource_o0wy3")
@@ -164,19 +173,22 @@ any_state = SubResource("Resource_o0wy3")
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 13
-script = ExtResource("1_p01if")
+script = ExtResource("1_48mkw")
+player_movement_config = ExtResource("2_njw6o")
+initial_energy = ExtResource("3_cxryf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_yk82u")
 debug_color = Color(0.794939, 0.0659271, 1, 0.42)
 
-[node name="PlayerSkin" type="Node2D" parent="."]
+[node name="PlayerSkin" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
-script = ExtResource("4_2ehab")
+script = ExtResource("1_unklv")
+player = NodePath("..")
+ghost_scene = ExtResource("3_nj0dd")
 
 [node name="SkinSprite" type="Sprite2D" parent="PlayerSkin"]
-unique_name_in_owner = true
 light_mask = 2
 visibility_layer = 2
 position = Vector2(0, -9)
@@ -189,7 +201,6 @@ root_node = NodePath("../..")
 tree_root = SubResource("AnimationRootNode_hjpu5")
 
 [node name="SkinAnimationPlayer" type="AnimationPlayer" parent="PlayerSkin"]
-unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_xi8kc")
@@ -327,6 +338,10 @@ wallRaycast = NodePath("../../../../Raycasts/WallRaycast")
 [node name="StateDeath" type="Node" parent="Managers/StateMachine/States"]
 script = ExtResource("19_1b85v")
 
+[node name="FxcStateMaschine" type="Node" parent="Managers"]
+script = ExtResource("29_nqham")
+state_maschine = SubResource("Resource_k42ot")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -8)
 limit_left = 0
@@ -336,22 +351,3 @@ limit_bottom = 180
 position_smoothing_speed = 8.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="FxcManagers" type="Node" parent="."]
-
-[node name="FxcStateMaschine" type="Node" parent="FxcManagers"]
-unique_name_in_owner = true
-script = ExtResource("29_nqham")
-state_maschine = SubResource("Resource_k42ot")
-
-[node name="FxcPlayerStatus" type="Node" parent="FxcManagers"]
-unique_name_in_owner = true
-script = ExtResource("29_gsq1m")
-
-[node name="FxcPlayerInput" type="Node" parent="FxcManagers"]
-unique_name_in_owner = true
-script = ExtResource("33_fbase")
-
-[node name="FxcPlayerMovementCore" type="Node" parent="FxcManagers"]
-unique_name_in_owner = true
-script = ExtResource("32_mx3sh")

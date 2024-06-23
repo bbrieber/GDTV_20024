@@ -1,0 +1,33 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqwjk74mi65r7"]
+
+[ext_resource type="Shader" path="res://vfx/waterfall/Waterfall_Shader.gdshader" id="1_hxmmu"]
+[ext_resource type="Texture2D" uid="uid://ca00l2d8ftmio" path="res://vfx/waterfall/Waterfall_Boder_Both.png" id="2_ghvfn"]
+[ext_resource type="Texture2D" uid="uid://n1gvh2kl4gim" path="res://vfx/waterfall/Waterfall_Boder_Left.png" id="2_ide4t"]
+[ext_resource type="Texture2D" uid="uid://brb1edf6j1bmt" path="res://vfx/waterfall/Waterfall_Mask_Left.png" id="3_c1sce"]
+[ext_resource type="Texture2D" uid="uid://d7fleyskedur" path="res://vfx/waterfall/Waterfall_Waves.png" id="4_x18q8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mrqik"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lidhp"]
+seamless = true
+noise = SubResource("FastNoiseLite_mrqik")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yrpto"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oaogi"]
+seamless = true
+noise = SubResource("FastNoiseLite_yrpto")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk2r5"]
+shader = ExtResource("1_hxmmu")
+shader_parameter/border_texture = ExtResource("2_ide4t")
+shader_parameter/mask_texture = ExtResource("3_c1sce")
+shader_parameter/wave_texture = ExtResource("4_x18q8")
+shader_parameter/v_noise_texture = SubResource("NoiseTexture2D_oaogi")
+shader_parameter/h_noise_texture = SubResource("NoiseTexture2D_lidhp")
+
+[node name="Node" type="Node2D"]
+
+[node name="WaterfallTileLeft" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sk2r5")
+texture = ExtResource("2_ghvfn")
