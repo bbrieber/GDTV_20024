@@ -1,0 +1,3 @@
+[submodule "project/addons/fxc_state_machine"]
+	path = project/addons/fxc_state_machine
+	url = https://github.com/bbrieber/fxc_state_machine.git

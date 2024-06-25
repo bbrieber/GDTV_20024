@@ -41,7 +41,7 @@ void fragment() {
 	
 	float pixel_offset = getWind( UV, time)* TEXTURE_PIXEL_SIZE.x;
 	
-	POINT_COORD.x += pixel_offset;
+	///POINT_COORD.x += pixel_offset;
 	
 	////getWind( UV, time)
 	vec2 uv = vec2(UV.x + 1.0 * TEXTURE_PIXEL_SIZE.x,UV.y );
