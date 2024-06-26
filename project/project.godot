@@ -39,6 +39,10 @@ window/stretch/aspect="keep_width"
 
 enabled=PackedStringArray("res://addons/fxc_state_machine/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_left={
