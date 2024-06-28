@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cjbvk6yp728xc"]
+[gd_scene load_steps=41 format=3 uid="uid://cjbvk6yp728xc"]
 
 [ext_resource type="Texture2D" uid="uid://cuksxd4r4hepx" path="res://sprites/Mage_SpriteSheet.png" id="1_41jcg"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player.gd" id="1_p01if"]
@@ -28,7 +28,6 @@
 [ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_status.gd" id="29_gsq1m"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state_maschine.gd" id="29_nqham"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state_maschine_resource.gd" id="30_eqafv"]
-[ext_resource type="Script" path="res://addons/fxc_state_machine/core/fxc_state.gd" id="30_yoev4"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_movement_core.gd" id="32_mx3sh"]
 [ext_resource type="Script" path="res://addons/fxc_state_machine/sample/fxc_player_input.gd" id="33_fbase"]
 
@@ -146,20 +145,8 @@ _data = {
 "start_jump": SubResource("Animation_bqcee")
 }
 
-[sub_resource type="Resource" id="Resource_o0wy3"]
-script = ExtResource("30_yoev4")
-init_state = false
-
-[sub_resource type="Resource" id="Resource_lobin"]
-script = ExtResource("30_yoev4")
-init_state = false
-
 [sub_resource type="Resource" id="Resource_k42ot"]
 script = ExtResource("30_eqafv")
-states = Array[ExtResource("30_yoev4")]([])
-transitions = Array[Resource("res://addons/fxc_state_machine/core/fxc_transition.gd")]([])
-init_state = SubResource("Resource_lobin")
-any_state = SubResource("Resource_o0wy3")
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
