@@ -1,3 +1,4 @@
+@tool
 class_name BreakingTile extends StaticBody2D
 
 
@@ -22,6 +23,7 @@ func _on_body_entered(body) -> void:
 		anim_player.play("destroy")
 
 
-func init():
+func init_tile()->void:
+	print("hey")
 	anim_player.play("default")
 	anim_player.stop()

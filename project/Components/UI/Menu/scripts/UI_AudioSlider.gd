@@ -1,4 +1,4 @@
-class_name UI_AudioSlider extends Slider
+class_name UI_AudioSlider extends HSlider
 
 
 @export var bus_name :String
